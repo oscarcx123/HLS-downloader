@@ -70,6 +70,8 @@ def initdata():
 def mainget(urlstr):
     return (403,'403')
 
+def download(obj):
+    os.system(f"python dl_hls.py '{obj['name']}' '{obj['url']}'")
 
 def mainpost(urlstr,body):
     callback=lambda:0
@@ -78,7 +80,7 @@ def mainpost(urlstr,body):
             'POST / ',addr[0],':',str(addr[1]),' ',str(body)
             ]))
         obj=json.loads(body)
-        os.system(f"python dl_hls.py '{obj['name']}' '{obj['url']}'")
+        threading.Thread(target=download, args=(obj,)).start()
         return (200,'succeed',callback)
 
     return (403,'no service this url')

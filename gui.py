@@ -33,4 +33,4 @@ root.grid_columnconfigure(0, weight=1)
 
 dl_btn.place(relx=0.55, rely=1.0, anchor=tk.SE)
 
-root.mainloop() 
+root.mainloop()
